@@ -41,6 +41,12 @@
   box-sizing: border-box;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 ul {
   list-style-type: none;
 }
@@ -124,16 +130,20 @@ address {
 /* Header */
 header {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  z-index: 10;
 }
 
 .header-nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 240px;
-  margin: 42px 0;
+  justify-content: space-between;
+  padding: 16px 0;
+  margin: 0;
 }
 
 .header-menu {
@@ -144,18 +154,34 @@ header {
   gap: 56px;
 }
 
+.header-socials {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+.header-socials .social-icon {
+  fill: var(--color-brand-dark);
+}
+.header-socials .social-icon:hover {
+  fill: var(--color-brand-light);
+  cursor: pointer;
+}
+
 /* Hero-section */
 .hero-section {
-  padding: 125px 0;
+  padding: 125px 0 250px;
   background-image: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.9) 30%,
-      rgba(255, 255, 255, 0) 70%
+      89deg,
+      #fff 30.62%,
+      rgba(255, 255, 255, 0.85) 41.31%,
+      rgba(255, 255, 255, 0.19) 58.65%,
+      rgba(255, 255, 255, 0) 72.78%
     ),
     url('../images/hero-section-baground.jpg');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center top;
   background-size: cover;
+  position: relative;
 }
 
 .hero-section .container {
@@ -192,18 +218,52 @@ header {
   text-align: center;
 }
 
+.hero-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
 /* About-section */
 .about-container {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 40px;
 }
-
+.about-container:before {
+  content: '';
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  right: 0;
+  left: 810px;
+  bottom: 40%;
+  transform: rotate(-30deg);
+  background-image: url(../images/star-dark.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .about-content {
   display: flex;
   flex-direction: column;
   gap: 40px;
+}
+.about-content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -50px;
+  width: 40px;
+  height: 40px;
+  transform: rotate(30deg);
+  background-image: url('../images/star-light.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
 }
 
 .about-title span {
@@ -226,12 +286,27 @@ header {
 }
 
 .about-photos {
+  position: relative;
   display: flex;
   gap: 40px;
   flex-direction: column;
   width: 100%;
   max-width: 500px;
 }
+.about-photos::after {
+  content: '';
+  position: absolute;
+  bottom: 404px;
+  left: 446px;
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/star-grey.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+}
+
 .about-photos img {
   border-radius: 50%;
 }
@@ -245,6 +320,23 @@ header {
 }
 
 /* Advantages-section */
+#advantages-section {
+  position: relative;
+}
+#advantages-section::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 0;
+  width: 100%;
+  height: 1800px;
+  background-image: url('../images/advantages-bagroung.svg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  z-index: -1;
+}
+
 .advantages-title {
   color: var(--color-brand-dark);
   font-family: 'Play';
@@ -269,9 +361,7 @@ header {
 }
 
 .advantages-card {
-  background-color: var(
-    --color-secondary-dark-gray
-  ); /*поки інший колір, щоб було видно картку*/
+  background-color: var(--color-primary-light);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -289,10 +379,9 @@ header {
   color: var(--color-brand-dark);
   text-align: center;
 }
-
-/* Тимчасовий стиль для іконки, поки немає SVG-спрайту */
 .advantages-icon {
-  background-color: var(--color-brand-light);
+  margin-bottom: 8px;
+  fill: var(--color-brand-light);
 }
 
 /* Procedures-section */
@@ -313,6 +402,7 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 0;
   gap: 16px;
 }
 
@@ -322,6 +412,22 @@ header {
   border-radius: 4px 120px 4px 120px;
   overflow: hidden;
   position: relative;
+}
+
+.procedure-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(1, 28, 68, 0) 48.53%,
+    rgba(1, 28, 68, 0.73) 84.61%,
+    var(--color-brand-dark) 101.39%
+  );
+  z-index: 1;
 }
 
 .procedure-name {
@@ -334,6 +440,42 @@ header {
   margin: 0;
   font-size: 22px;
   line-height: 1.2;
+  z-index: 2;
+}
+
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.carousel-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-brand-dark);
+  background-color: transparent;
+  cursor: pointer;
+}
+.carousel-button:hover {
+  background-color: var(--color-brand-light);
+  border-color: var(--color-brand-light);
+}
+
+.carousel-button svg {
+  fill: var(--color-brand-dark);
+}
+
+.carousel-button:hover svg {
+  fill: var(--color-primary-light);
+}
+
+.carousel-button.left {
+  transform: rotate(180deg);
 }
 
 /* Contacts-section */
@@ -360,9 +502,27 @@ header {
 
 /* Footer */
 footer {
+  position: relative;
   background-color: var(--color-brand-dark);
+  background-image: url(../images/footer-baground.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   padding: 56px;
 }
+
+footer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 280px;
+  height: 212px;
+  background-image: url(../images/footer-bottles.png);
+  background-repeat: no-repeat;
+  background-position: bottom left;
+}
+
 .footer-menu,
 .footer-contacts,
 .footer-socials {
@@ -386,6 +546,23 @@ footer {
   flex-direction: column;
   gap: 16px;
 }
+.footer-socials {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  padding: 0;
+  margin: 0;
+}
+
+footer .social-icon {
+  fill: var(--color-primary-light);
+}
+
+footer .social-icon:hover {
+  fill: var(--color-brand-light);
+  cursor: pointer;
+}
+
 .footer-contacts {
   display: flex;
   flex-direction: column;
@@ -401,4 +578,7 @@ footer {
 footer .address-copyright {
   font-size: 13px;
   color: var(--color-secondary-light-gray);
+}
+.footer-decoration {
+  position: absolute;
 }
