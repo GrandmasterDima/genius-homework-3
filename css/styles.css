@@ -91,6 +91,7 @@ address {
   color: var(--color-primary-light);
   background: var(--color-brand-light);
   cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 .button:hover {
   color: var(--color-brand-dark);
@@ -104,6 +105,7 @@ address {
   font-weight: 400;
   text-decoration: none;
   line-height: 1.2;
+  transition: color 0.2s ease, font-weight 0.2s ease;
 }
 .link-header:hover {
   color: var(--color-brand-light);
@@ -116,6 +118,7 @@ address {
   font-weight: 400;
   text-decoration: none;
   white-space: nowrap;
+  transition: color 0.2s ease, font-weight 0.2s ease;
 }
 .link-footer:hover {
   color: var(--color-brand-light);
@@ -162,6 +165,7 @@ header {
 }
 .header-socials .social-icon {
   fill: var(--color-brand-dark);
+  transition: fill 0.2s ease;
 }
 .header-socials .social-icon:hover {
   fill: var(--color-brand-light);
@@ -224,6 +228,7 @@ header {
   bottom: 0;
   left: 0;
   width: 100%;
+  pointer-events: none;
 }
 
 /* About-section */
@@ -246,6 +251,7 @@ header {
   background-image: url(../images/star-dark.svg);
   background-repeat: no-repeat;
   background-position: center;
+  animation: spin-and-pulse-dark 4s ease-in-out infinite;
 }
 .about-content {
   display: flex;
@@ -265,6 +271,7 @@ header {
   background-position: center;
   background-size: contain;
   pointer-events: none;
+  animation: spin-and-pulse-light 3s ease-in-out infinite;
 }
 
 .about-title span {
@@ -306,6 +313,7 @@ header {
   background-position: center;
   background-size: contain;
   pointer-events: none;
+  animation: spin-and-pulse-grey 6s infinite;
 }
 
 .about-photos img {
@@ -318,6 +326,41 @@ header {
 
 .about-photos img:last-child {
   align-self: flex-end;
+}
+
+@keyframes spin-and-pulse-dark {
+  0% {
+    transform: rotate(-30deg) scale(1);
+  }
+  50% {
+    transform: rotate(-10deg) scale(1.15);
+  }
+  100% {
+    transform: rotate(-30deg) scale(1);
+  }
+}
+
+@keyframes spin-and-pulse-light {
+  0% {
+    transform: rotate(30deg) scale(1);
+  }
+  50% {
+    transform: rotate(50deg) scale(1.15);
+  }
+  100% {
+    transform: rotate(30deg) scale(1);
+  }
+}
+@keyframes spin-and-pulse-grey {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.8);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }
 
 /* Advantages-section */
@@ -461,6 +504,7 @@ header {
   border: 1px solid var(--color-brand-dark);
   background-color: transparent;
   cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 .carousel-button:hover {
   background-color: var(--color-brand-light);
@@ -469,6 +513,7 @@ header {
 
 .carousel-button svg {
   fill: var(--color-brand-dark);
+  transition: fill 0.2s ease;
 }
 
 .carousel-button:hover svg {
@@ -499,6 +544,37 @@ header {
 
 .contact-map iframe {
   border-radius: 32px;
+}
+.contacts-form-wrapper {
+  background-color: var(--color-brand-dark);
+  background-image: url('../images/modal-baground.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 32px;
+  padding: 48px;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contacts-form-wrapper .form {
+  gap: 16px;
+}
+
+.contacts-form-wrapper .form-terms {
+  margin-top: -8px;
+}
+
+.form-title {
+  color: var(--color-primary-light);
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+.form-title .accent {
+  color: var(--color-brand-light);
 }
 
 /* Footer */
@@ -553,6 +629,7 @@ footer::after {
   gap: 24px;
   padding: 0;
   margin: 0;
+  transition: fill 0.2s ease;
 }
 
 footer .social-icon {
@@ -582,4 +659,147 @@ footer .address-copyright {
 }
 .footer-decoration {
   position: absolute;
+}
+
+/* Modal */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(1, 28, 68, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 20px;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 720px;
+  max-height: 680px;
+  background-color: var(--color-brand-dark);
+  background-color: var(--color-brand-dark);
+  background-image: url('../images/modal-baground.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 32px;
+  padding: 42px;
+  text-align: center;
+}
+
+.modal-btn-close {
+  position: absolute;
+  top: 42px;
+  right: 42px;
+  background: transparent;
+  border: none;
+  width: 16px;
+  height: 8px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.modal-btn-close svg {
+  fill: transparent;
+  stroke: var(--color-primary-light);
+  transition: stroke 0.2s ease;
+}
+
+.modal-btn-close:hover svg {
+  stroke: var(--color-brand-light);
+}
+
+.modal-title {
+  font-family: 'Play';
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--color-primary-light);
+  line-height: 1.1;
+  margin-bottom: 40px;
+}
+
+.modal-subtitle {
+  font-size: 22px;
+  color: var(--color-primary-light);
+  margin-bottom: 32px;
+}
+.modal-subtitle .accent {
+  color: var(--color-brand-light);
+}
+.modal .form-terms {
+  margin-top: -16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 310px;
+  margin: 0 auto;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.form-input {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid var(--color-secondary-light-gray);
+  border-radius: 32px;
+  padding: 16px 32px;
+  color: var(--color-primary-light);
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-secondary-dark-gray);
+  background-color: var(--color-secondary-light-gray);
+}
+
+.form-input::placeholder {
+  color: var(--color-primary-light);
+  opacity: 0.7;
+}
+
+.form-submit-btn:hover {
+  color: var(--color-primary-light);
+}
+.form-terms {
+  margin: 0;
+  color: var(--color-secondary-light-gray);
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
